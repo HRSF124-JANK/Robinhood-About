@@ -81,6 +81,7 @@ font-size: 16px;
 const Read = styled.span`
 font-family: 'DINPro-Medium';
 font-size: 13px;
+
 color: ${color};
 `;
 
