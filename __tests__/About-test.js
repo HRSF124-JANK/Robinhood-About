@@ -1,3 +1,4 @@
+
 import 'jsdom-global/register';
 import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
@@ -86,4 +87,3 @@ describe('About', () => {
     })
 })
 
-    
