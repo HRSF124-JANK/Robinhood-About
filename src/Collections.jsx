@@ -38,8 +38,8 @@ class Collections extends React.Component {
 
   render() {
     return (
-      <CollectionStyle.Wrapper>
-        <CollectionStyle.CollectionsTitle>Collections</CollectionStyle.CollectionsTitle>
+      <CollectionStyle.Wrapper style={{background: this.props.theme.background}}>
+        <CollectionStyle.CollectionsTitle style={{color: this.props.theme.fontColor}}>Collections</CollectionStyle.CollectionsTitle>
         <CollectionStyle.LineBreak />
         <CollectionStyle.CollectionContainer>{this.collectionList()}</CollectionStyle.CollectionContainer>
       </CollectionStyle.Wrapper>

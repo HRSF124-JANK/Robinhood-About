@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --collectCoverage",
-    "build": "npx webpack --mode=production",
+    "build": "npx webpack -w -d",
     "start": "npx nodemon ./server/index.js",
     "db:setup": "node database/seed.js"
   },

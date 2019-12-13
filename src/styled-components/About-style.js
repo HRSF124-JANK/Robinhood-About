@@ -3,14 +3,9 @@ import styled from 'styled-components'
 const AboutStyle = {}
 
 AboutStyle.Wrapper = styled.div`
-<<<<<<< HEAD
-padding: 4em;
-=======
 padding-left: 36px;
 padding-right: 36px;
 width: 676px;
->>>>>>> cb15b1fb0fc28e33366d13326261a3e8d329fbc6
-background: #1B1B1D;
 display: grid;
 `;
 
@@ -25,7 +20,6 @@ border: 1px;
 
 AboutStyle.InfoTitle = styled.div`
 display: inline-block;
-color: #ffffff;
 font-family: 'DINPro-Medium';
 font-size: 13px;
 `;
@@ -33,7 +27,6 @@ font-size: 13px;
 AboutStyle.InfoText = styled.div`
 margin-right: 10px;
 margin-bottom: 10px;
-color: #ffffff;
 font-family: 'DINPro-Regular';
 font-size: 13px;
 `;
@@ -47,7 +40,6 @@ font-size: 13px;
 
 AboutStyle.AboutTitle = styled.div`
 float: left;
-color: #ffffff;
 font-family: 'DINPro-Medium';
 font-size: 26px;
 `
@@ -70,7 +62,6 @@ padding: 0;
 
 AboutStyle.AboutText = styled.div`
 margin-bottom: 40px;
-color: #ffffff;
 font-family: 'DINPro-Regular';
 font-size: 16px;
 `;

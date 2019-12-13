@@ -12,13 +12,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.get('/about/getData/:id', function(req, res) {
-    var id = req.params.id;
+app.get('/about/getData', function(req, res) {
+   let id = req.query.id ? req.query.id : '1';
    Company.findOne({id: id}, (err, result) => {
        if (err) {
            console.log(err)
        } else {
-           console.log(result)
            res.send(result);
        }
    })

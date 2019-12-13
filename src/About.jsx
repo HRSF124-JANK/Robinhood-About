@@ -14,6 +14,8 @@ class About extends React.Component {
             color: '',
             containerColor: '',
         }
+
+        this.colors = {};
         this.pointer = this.pointer.bind(this);
         this.mouseOut = this.mouseOut.bind(this);
         this.showClicked = this.showClicked.bind(this);
@@ -49,7 +51,10 @@ class About extends React.Component {
 
     componentDidMount() {
         this.changeColor();
-        axios.get('/about/getData/1').then((response) => {
+        var colors = this.marketOpen();
+        this.colors = colors;
+        console.log('colors', colors)
+        axios.get(`/about/getData${window.location.search}`).then((response) => {
             response.data.adjectives = JSON.parse(response.data.adjectives);
             const someData = {};
 
@@ -82,6 +87,20 @@ class About extends React.Component {
         })
     }
 
+    marketOpen() {
+        const d = new Date();
+        const totalMinutes = (d.getHours() * 60) + d.getMinutes();
+        const colors = {};
+        if (totalMinutes < 360 || totalMinutes >= 900) {
+          colors.fontColor = 'white';
+          colors.background = '#1b1b1d';
+        } else {
+          colors.fontColor = '#171718';
+          colors.background = 'white';
+        }
+        return colors;
+      }
+
     showClicked() {
         this.setState({ showMore: !this.state.showMore })
     }
@@ -93,9 +112,9 @@ class About extends React.Component {
     mapObject(obj) {
         return Object.keys(obj).map((key) => {
             if (key === 'CEO') {
-                return <AboutStyle.GridItem><AboutStyle.InfoTitle>{key}</AboutStyle.InfoTitle><AboutStyle.InfoTextCEO onMouseOver={this.pointer} style={{ color: this.state.color }}>{obj.CEO}</AboutStyle.InfoTextCEO></AboutStyle.GridItem>
+                return <AboutStyle.GridItem><AboutStyle.InfoTitle style={{color: this.colors.fontColor}}>{key}</AboutStyle.InfoTitle><AboutStyle.InfoTextCEO onMouseOver={this.pointer} style={{ color: this.state.color }}>{obj.CEO}</AboutStyle.InfoTextCEO></AboutStyle.GridItem>
             } else if (key !== '_id' && key !== 'description' && key !== 'adjectives' && key !== '__v') {
-                return <AboutStyle.GridItem><AboutStyle.InfoTitle>{key}</AboutStyle.InfoTitle><AboutStyle.InfoText>{obj[key]}</AboutStyle.InfoText></AboutStyle.GridItem>
+                return <AboutStyle.GridItem><AboutStyle.InfoTitle style={{color: this.colors.fontColor}}>{key}</AboutStyle.InfoTitle><AboutStyle.InfoText style={{color: this.colors.fontColor}}>{obj[key]}</AboutStyle.InfoText></AboutStyle.GridItem>
             }
         })
     }
@@ -104,7 +123,7 @@ class About extends React.Component {
         if (!this.state.readMore) {
             if (this.state.currentData.description) {
                 return (
-                    <AboutStyle.AboutText>{this.state.currentData.description.split('.').splice(0, 5).join('.')}. <AboutStyle.Read onClick={this.readClicked} onMouseOver={this.pointer} style={{ color: this.state.color }}>Read More</AboutStyle.Read></AboutStyle.AboutText>
+                    <AboutStyle.AboutText style={{color: this.colors.fontColor}}>{this.state.currentData.description.split('.').splice(0, 5).join('.')}. <AboutStyle.Read onClick={this.readClicked} onMouseOver={this.pointer} style={{ color: this.state.color }}>Read More</AboutStyle.Read></AboutStyle.AboutText>
                 )
             } else {
                 return (
@@ -113,7 +132,7 @@ class About extends React.Component {
             }
         } else {
             return (
-                <AboutStyle.AboutText>{this.state.currentData.description}<AboutStyle.Read onClick={this.readClicked} onMouseOver={this.pointer} style={{ color: this.state.color }}> Read Less</AboutStyle.Read></AboutStyle.AboutText>
+                <AboutStyle.AboutText style={{color: this.colors.fontColor}}>{this.state.currentData.description}<AboutStyle.Read onClick={this.readClicked} onMouseOver={this.pointer} style={{ color: this.state.color }}> Read Less</AboutStyle.Read></AboutStyle.AboutText>
             )
         }
     }
@@ -127,15 +146,15 @@ class About extends React.Component {
 
         return (
             <div>
-                <AboutStyle.Wrapper>
-                    <span><AboutStyle.AboutTitle>About</AboutStyle.AboutTitle> <AboutStyle.Show onClick={this.showClicked} onMouseOver={this.pointer} onMouseOut={this.mouseOut} style={{ color: this.state.color }}>Show More</AboutStyle.Show></span>
+                <AboutStyle.Wrapper style={{background: this.colors.background}}>
+                    <span><AboutStyle.AboutTitle style={{color: this.colors.fontColor}}>About</AboutStyle.AboutTitle> <AboutStyle.Show onClick={this.showClicked} onMouseOver={this.pointer} onMouseOut={this.mouseOut} style={{ color: this.state.color }}>Show More</AboutStyle.Show></span>
                     <AboutStyle.LineBreak />
                     {this.read()}
                     <AboutStyle.GridContainer>
                         {this.mapObject(data)}
                     </AboutStyle.GridContainer>
                 </AboutStyle.Wrapper>
-                <Collections color={this.state.color} container={this.state.containerColor} adj={this.state.currentData.adjectives} />
+                <Collections color={this.state.color} container={this.state.containerColor} adj={this.state.currentData.adjectives} theme={this.colors} />
             </div>
         )
     }
