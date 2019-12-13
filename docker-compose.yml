@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+=======
+# version: '3'
+# services:
+#   web:
+#     image: docker-about-component
+#     build: .
+#     command: node ./server/index.js
+#     ports: 
+#       - "3003:3003"
+#     volumes: 
+#       - /usr/src/app
+#       - /usr/src/app/node_modules
+#     depends_on:
+#       - mongo_seeding
+
+>>>>>>> cb15b1fb0fc28e33366d13326261a3e8d329fbc6
   version: "3"
   services:
     database:
