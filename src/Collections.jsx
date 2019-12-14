@@ -40,7 +40,7 @@ class Collections extends React.Component {
     return (
       <CollectionStyle.Wrapper style={{background: this.props.theme.background}}>
         <CollectionStyle.CollectionsTitle style={{color: this.props.theme.fontColor}}>Collections</CollectionStyle.CollectionsTitle>
-        <CollectionStyle.LineBreak />
+        <CollectionStyle.LineBreak style={{borderTop: `1px solid ${this.props.theme.lineBreak}`}} />
         <CollectionStyle.CollectionContainer>{this.collectionList()}</CollectionStyle.CollectionContainer>
       </CollectionStyle.Wrapper>
     )

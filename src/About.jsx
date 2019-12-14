@@ -94,9 +94,11 @@ class About extends React.Component {
         if (totalMinutes < 360 || totalMinutes >= 900) {
           colors.fontColor = 'white';
           colors.background = '#1b1b1d';
+          colors.lineBreak = 'black';
         } else {
           colors.fontColor = '#171718';
           colors.background = 'white';
+          colors.lineBreak =  'rgb(237, 237, 237, .5)';
         }
         return colors;
       }
@@ -148,7 +150,7 @@ class About extends React.Component {
             <div>
                 <AboutStyle.Wrapper style={{background: this.colors.background}}>
                     <span><AboutStyle.AboutTitle style={{color: this.colors.fontColor}}>About</AboutStyle.AboutTitle> <AboutStyle.Show onClick={this.showClicked} onMouseOver={this.pointer} onMouseOut={this.mouseOut} style={{ color: this.state.color }}>Show More</AboutStyle.Show></span>
-                    <AboutStyle.LineBreak />
+                    <AboutStyle.LineBreak style={{borderTop: `1px solid ${this.colors.lineBreak}`}}/>
                     {this.read()}
                     <AboutStyle.GridContainer>
                         {this.mapObject(data)}
