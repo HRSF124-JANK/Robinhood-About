@@ -5,11 +5,13 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const Company = require('../database/Company.js');
 const cors = require('cors');
+const compression = require('compression')
 
 app.use('/', express.static(path.join(__dirname, '../dist')));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(compression())
 
 
 app.get('/about/getData', function(req, res) {
